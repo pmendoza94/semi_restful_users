@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Users New</title>
+	</head>
+	<body>
+		<header>
+			<h1>Add a New User</h1>
+		</header>
+
+		{%if messages%}
+			{% for message in messages %}
+				{% if message.tags == 'error'%}
+					<p style="color: red">{{message}}</p>
+				{%endif%}
+
+				{% if message.tags == 'success'%}
+					<p style="color: green">{{message}}</p>
+				{%endif%}
+			{%endfor%}
+		{%endif%}
+		<form action="/create" method="post">
+		{%csrf_token%}
+			<label>First Name:</label>
+			<br>
+			<input type="text" name="first_name" placeholder="Enter your first name">
+			<br><br>
+
+			<label>Last Name:</label>
+			<br>
+			<input type="text" name="last_name" placeholder="Enter your last name">
+			<br><br>
+
+			<label>Email:</label>
+			<br>
+			<input type="email" name="email" placeholder="Enter your email">
+			<br><br>
+
+			<input type="submit" name="create" value="Create">
+			<br><br>
+
+			<a href="/">Go Back</a>
+		</form>
+	</body>
+</html>

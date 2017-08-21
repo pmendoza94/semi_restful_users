@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Edit User</title>
+	</head>
+	<body>
+		<header>
+			<h1>Edit User {{users.id}}</h1>
+		</header>
+		{%if messages%}
+			{% for message in messages %}
+				{% if message.tags == 'error'%}
+					<p style="color: red">{{message}}</p>
+				{%endif%}
+
+				{% if message.tags == 'success'%}
+					<p style="color: green">{{message}}</p>
+				{%endif%}
+			{%endfor%}
+		{%endif%}
+		<form action="/update/{{users.id}}" method="post">
+		{%csrf_token%}
+			<label>First Name:</label>
+			<br>
+			<input type="text" name="first_name" placeholder="Enter a new editted first name">
+			<br><br>
+
+			<label>Last Name:</label>
+			<br>
+			<input type="text" name="last_name" placeholder="Enter a new editted last name">
+			<br><br>
+
+			<label>Email:</label>
+			<br>
+			<input type="email" name="email" placeholder="Enter a new editted email">
+			<br><br>
+
+			<input type="submit" value="Update">
+			<br><br>
+
+			<a href="/show/{{users.id}}">Show</a> | <a href="/">Go Back</a>
+		</form>
+	</body>
+</html>
